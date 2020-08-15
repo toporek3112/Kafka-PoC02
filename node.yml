@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-node
+  labels:
+    app: node-server
+spec:
+  selector:
+    matchLabels:
+      app: node-server
+  template:
+    metadata:
+      labels:
+        app: node-server
+    spec:
+      containers:
+      - name: node-server
+        image: 311200/kafka-poc02
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - name: node-port
+          containerPort: 5000
+        env:
+          - name: PRODUCER_BROKER
+            value: kafka-test-0.kafka-test-headless.default.svc.cluster.local:9092
+          - name: CONSUMER_BROKER
+            value: kafka-test.default.svc.cluster.local:9092
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000

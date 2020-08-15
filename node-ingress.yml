@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: node-ingress
+spec:
+  rules:
+    - host: node.ck8s-telekom-austria-demo.a1ck.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: node-service
+              servicePort: 5000
