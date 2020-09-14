@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: node-server
-        image: 311200/kafka-poc02
+        image: tasktrack.telekom.at/parma-poc-docker-local/graphql-poc02
         resources:
           limits:
             memory: "128Mi"
